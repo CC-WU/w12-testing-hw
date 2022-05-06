@@ -16,9 +16,9 @@ describe('Game', () => {
   test('Buy 1 for the first episode, 1 for the second episode', () => {
     const game = new Game();
     game.addBook(1, 1);
-    game.addBook(2, 1);
+    game.addBook(2, 2);
     
-    expect(game.getTotalPrice).toBe(190);
+    expect(game.getTotalPrice).toBe(290);
   });
 
 
