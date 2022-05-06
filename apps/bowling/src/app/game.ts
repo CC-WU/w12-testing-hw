@@ -30,17 +30,19 @@ export class Game {
         });
         
         if (discount > 5) discount = 5;
-        let mapValue = this.catalogue.get(discount);
 
         let sum = 0;
         this.bookList.forEach((num) => {
             sum += num;
         });
+
+        let bookCategory =  this.bookList.size;
+        let mapValue = this.catalogue.get(discount);
         if (mapValue !== undefined) {
-            this.totalPrice = sum * 100 * (1 - mapValue);
+            this.totalPrice = (bookCategory * 100 * (1 - mapValue)) + ((sum - bookCategory) * 100);
         } 
         else {
-            this.totalPrice = sum * 100;
+            this.totalPrice = (bookCategory * 100) + ((sum - bookCategory) * 100);
         }
 
         return this.totalPrice;
