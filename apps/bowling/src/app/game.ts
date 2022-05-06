@@ -13,40 +13,35 @@ export class Game {
 
     addBook(bookId: number, bookNum: number) {
         let currNum = this.bookList.get(bookId);
-        if (currNum !== undefined) {
-            this.bookList.set(bookId, currNum + bookNum);
-        }
-        else { // 第一次買此書
-            this.bookList.set(bookId, bookNum);
-        }
+        this.bookList.set(bookId, this.isundefined(currNum) + bookNum);
     }
 
     get getTotalPrice() {
-        let discount = 0;
-        this.bookList.forEach(function(itm){
-            if (itm > 0) {
-                discount++;
-            }
+        // 總共買幾本書
+        let totalBookNumPurchases = 0;
+        this.bookList.forEach((eachBookNum) =>{
+            totalBookNumPurchases += eachBookNum;
         });
+
+        // 總共買幾總書
+        let totalBookCategoryPurchases =  this.bookList.size;
+
+        // 折扣
+        let discount = this.catalogue.get(totalBookCategoryPurchases);
+
+        // 總價錢
+        this.totalPrice = (totalBookCategoryPurchases * 100 * (1 - this.isundefined(discount))) + ((totalBookNumPurchases - totalBookCategoryPurchases) * 100);
         
-        if (discount > 5) discount = 5;
-
-        let sum = 0;
-        this.bookList.forEach((num) => {
-            sum += num;
-        });
-
-        let bookCategory =  this.bookList.size;
-        let mapValue = this.catalogue.get(discount);
-        if (mapValue !== undefined) {
-            this.totalPrice = (bookCategory * 100 * (1 - mapValue)) + ((sum - bookCategory) * 100);
-        } 
-        else {
-            this.totalPrice = (bookCategory * 100) + ((sum - bookCategory) * 100);
-        }
-
         return this.totalPrice;
     }
 
+    private isundefined(item: any) {
+        if (item !== undefined) {
+            return item;
+        }
+        else {
+            return 0;
+        }
+    }
 
 }
