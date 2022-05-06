@@ -37,10 +37,10 @@ export class Game {
             sum += num;
         });
         if (mapValue !== undefined) {
-            this.totalPrice = sum * (1 - mapValue);
+            this.totalPrice = sum * 100 * (1 - mapValue);
         } 
         else {
-            this.totalPrice = sum;
+            this.totalPrice = sum * 100;
         }
 
         return this.totalPrice;
