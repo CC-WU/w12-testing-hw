@@ -19,10 +19,10 @@ export class Game {
         if (discount > 5) discount = 5;
         let mapValue = this.catalogue.get(discount);
         if (mapValue !== undefined) {
-            return this.bookList.reduce(x => x) * (1 - mapValue);
+            return this.bookList.reduce(x => x) * 100 * (1 - mapValue);
         } 
         else {
-            return this.bookList.reduce(x => x);
+            return this.bookList.reduce(x => x) * 100;
         }
     }
 
