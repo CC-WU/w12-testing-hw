@@ -12,4 +12,6 @@ describe('Game', () => {
     
     expect(game.getTotalPrice).toBe(100);
   });
+
+
 });
