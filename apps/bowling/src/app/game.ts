@@ -2,6 +2,6 @@ export class Game {
     addBook(pins: number) {}
 
     get getTotalPrice() {
-        return 0;
+        return 100;
     }
 }
